@@ -3,12 +3,11 @@ document.addEventListener('DOMContentLoaded', () =>{
   const scoreDisplay= document.querySelector('span');
   const startBtn = document.querySelector('.start');
 
-  const width=10;
+  const width= 10;
   let currentIndex = 0; //first div in our grid
   let appleIndex = 0; // first div in our grid
   let currentSnake = [2,1,0]; // 2 denotes HEAD of snake, 1 is the body part, and 0 is the TAIL
-
-  let direction =1;
+  let direction = 1;
   let score =0;
   let speed = 0.9;
   let intervalTime = 0;
@@ -21,9 +20,9 @@ function startGame() {
   currentSnake.forEach(index => squares[index].classList.remove('snake'));
   squares[appleIndex].classList.remove('apple');
   clearInterval(interval);
-  score =0;
-
-  direction=1;
+  score = 0;
+  randomApple();
+  direction= 1;
   scoreDisplay.innerText = score;
   intervalTime = 1000;
   currentSnake = [2,1,0];
@@ -52,7 +51,7 @@ function moveOutcomes(){
     squares[currentSnake[0]].classList.remove('apple');
     squares[tail].classList.add('snake');
     currentSnake.push(tail);
-
+    randomApple();
     score++;
     scoreDisplay.textContent = score;
     clearInterval(interval);
@@ -62,11 +61,12 @@ function moveOutcomes(){
   squares[currentSnake[0]].classList.add('snake');
 }
 
-
-
-
-
-
+function randomApple(){
+  do{
+    appleIndex = Math.floor(Math.random() * squares.length);
+  }while(squares[appleIndex].classList.contains('snake'))
+  squares[appleIndex].classList.add('apple');
+}
 
   //Movement of snake on board using keycodes.
 
@@ -75,7 +75,7 @@ function moveOutcomes(){
 
     if(e.keyCode === 39){
       direction = 1;
-    }else if(e.keycode === 38){
+    }else if(e.keyCode === 38){
       direction = -width;
     }else if(e.keyCode === 37){
       direction = -1;
