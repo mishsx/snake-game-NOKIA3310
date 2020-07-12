@@ -71,7 +71,7 @@ function randomApple(){
   //Movement of snake on board using keycodes.
 
   function control(e){
-    squares[currentIndex].classList.remove('snake'); // Removing snakes class from all the squares
+    //squares[currentIndex].classList.remove('snake'); // Removing snakes class from all the squares
 
     if(e.keyCode === 39){
       direction = 1;
