@@ -40,6 +40,7 @@ function moveOutcomes(){
     (currentSnake[0] - width < 0 && direction === -width ) ||
     squares[currentSnake[0] + direction].classList.contains('snake')
   ) {
+      alert("Game Over!!");
       return clearInterval(interval);
   }
 
